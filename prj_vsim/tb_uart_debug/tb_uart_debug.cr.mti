@@ -1,0 +1,349 @@
+C:/mymedia/vivado/zsrc/src_common/bs_reset.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/mymedia/vivado/zsrc/src_common/bs_reset.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity bs_reset
+-- Compiling architecture rtl of bs_reset
+
+} {} {}} C:/mymedia/vivado/zsrc/src_uart/bs_uart_atx_data_ramp_gen.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/mymedia/vivado/zsrc/src_uart/bs_uart_atx_data_ramp_gen.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity bs_uart_atx_data_ramp_gen
+-- Compiling architecture rtl of bs_uart_atx_data_ramp_gen
+
+} {} {}} C:/mymedia/vivado/zsrc/src_common/bs_cnt.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/mymedia/vivado/zsrc/src_common/bs_cnt.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity bs_cnt
+-- Compiling architecture rtl of bs_cnt
+
+} {} {}} C:/mymedia/vivado/zsrc/src_common/bs_5usec.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/mymedia/vivado/zsrc/src_common/bs_5usec.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity bs_5usec
+-- Compiling architecture rtl of bs_5usec
+
+} {} {}} C:/mymedia/vivado/zsrc/src_common/bs_sync_gen.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/mymedia/vivado/zsrc/src_common/bs_sync_gen.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity bs_sync_gen
+-- Compiling architecture rtl of bs_sync_gen
+-- Loading package ATTRIBUTES
+-- Loading package std_logic_misc
+-- Compiling entity bs_cdc_sync
+-- Compiling architecture implementation of bs_cdc_sync
+
+} {} {}} C:/mymedia/vivado/zsrc/prj_vsim/tb_uart_debug/src/top_uart_debug.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/mymedia/vivado/zsrc/prj_vsim/tb_uart_debug/src/top_uart_debug.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity top_uart_debug
+-- Compiling architecture rtl of top_uart_debug
+
+} {} {}} C:/mymedia/vivado/zsrc/src_common/bs_sw_led_axu15egb.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/mymedia/vivado/zsrc/src_common/bs_sw_led_axu15egb.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity bs_sw_led_axu15egb
+-- Compiling architecture rtl of bs_sw_led_axu15egb
+
+} {} {}} C:/mymedia/vivado/zsrc/src_uart/bs_uart_tx_rd.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/mymedia/vivado/zsrc/src_uart/bs_uart_tx_rd.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity bs_uart_tx_rd
+-- Compiling architecture RTL of bs_uart_tx_rd
+
+} {} {}} C:/mymedia/vivado/zsrc/src_aurora/bs_aurora_atx_ext.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/mymedia/vivado/zsrc/src_aurora/bs_aurora_atx_ext.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity bs_aurora_atx_ext
+-- Compiling architecture rtl of bs_aurora_atx_ext
+
+} {} {}} C:/mymedia/vivado/zsrc/src_uart/bs_uart_iram.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/mymedia/vivado/zsrc/src_uart/bs_uart_iram.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity bs_uart_iram
+-- Compiling architecture rtl of bs_uart_iram
+
+} {} {}} C:/mymedia/vivado/zsrc/src_uart/bs_uart_rx.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/mymedia/vivado/zsrc/src_uart/bs_uart_rx.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity bs_uart_rx
+-- Compiling architecture rtl of bs_uart_rx
+
+} {} {}} C:/mymedia/vivado/zsrc/src_common/bs_usec.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/mymedia/vivado/zsrc/src_common/bs_usec.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity bs_usec
+-- Compiling architecture rtl of bs_usec
+
+} {} {}} C:/mymedia/vivado/zsrc/src_common/bs_reset_n.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/mymedia/vivado/zsrc/src_common/bs_reset_n.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity bs_reset_n
+-- Compiling architecture rtl of bs_reset_n
+
+} {} {}} C:/mymedia/vivado/zsrc/src_uart/bs_uart_ram_rx_apb.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/mymedia/vivado/zsrc/src_uart/bs_uart_ram_rx_apb.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity bs_uart_ram_rx_apb
+-- Compiling architecture rtl of bs_uart_ram_rx_apb
+
+} {} {}} C:/mymedia/vivado/zsrc/src_aurora/bs_aurora_ram.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/mymedia/vivado/zsrc/src_aurora/bs_aurora_ram.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity bs_aurora_ram
+-- Compiling architecture rtl of bs_aurora_ram
+
+} {} {}} C:/mymedia/vivado/zsrc/src_uart/bs_uart_tx.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/mymedia/vivado/zsrc/src_uart/bs_uart_tx.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity bs_uart_tx
+-- Compiling architecture RTL of bs_uart_tx
+
+} {} {}} C:/mymedia/vivado/zsrc/src_uart/bs_uart_ram_rx_32.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/mymedia/vivado/zsrc/src_uart/bs_uart_ram_rx_32.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity bs_uart_ram_rx_32
+-- Compiling architecture rtl of bs_uart_ram_rx_32
+
+} {} {}} C:/mymedia/vivado/zsrc/src_uart/bs_uart_atx_ext.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/mymedia/vivado/zsrc/src_uart/bs_uart_atx_ext.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity bs_uart_atx_ext
+-- Compiling architecture rtl of bs_uart_atx_ext
+
+} {} {}} C:/mymedia/vivado/zsrc/src_uart/bs_uart_ram_tx_32_debug.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/mymedia/vivado/zsrc/src_uart/bs_uart_ram_tx_32_debug.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity bs_uart_ram_tx_32_debug
+-- Compiling architecture rtl of bs_uart_ram_tx_32_debug
+
+} {} {}} C:/mymedia/vivado/zsrc/src_uart/bs_uart_ram_tx_apb.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/mymedia/vivado/zsrc/src_uart/bs_uart_ram_tx_apb.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity bs_uart_ram_tx_apb
+-- Compiling architecture rtl of bs_uart_ram_tx_apb
+
+} {} {}} C:/mymedia/vivado/zsrc/src_common/bs_button.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/mymedia/vivado/zsrc/src_common/bs_button.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity bs_button
+-- Compiling architecture rtl of bs_button
+
+} {} {}} C:/mymedia/vivado/zsrc/src_uart/bs_uart_ram_tx_32.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/mymedia/vivado/zsrc/src_uart/bs_uart_ram_tx_32.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity bs_uart_ram_tx_32
+-- Compiling architecture rtl of bs_uart_ram_tx_32
+
+} {} {}} C:/mymedia/vivado/zsrc/src_common/bs_expansion.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/mymedia/vivado/zsrc/src_common/bs_expansion.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity bs_expansion
+-- Compiling architecture rtl of bs_expansion
+
+} {} {}} C:/mymedia/vivado/zsrc/prj_vsim/tb_uart_debug/src/tb_clock_uart_debug.vhd {1 {vcom -work work -2002 -explicit -stats=none {C:\mymedia\vivado\zsrc\prj_vsim\tb_uart_debug\src\tb_clock_uart_debug.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity tb_clock_uart_debug
+-- Compiling architecture MAPPED of tb_clock_uart_debug
+
+} {} {}} C:/mymedia/vivado/zsrc/src_uart/bs_uart_ram.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/mymedia/vivado/zsrc/src_uart/bs_uart_ram.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity bs_uart_ram
+-- Compiling architecture rtl of bs_uart_ram
+
+} {} {}} C:/mymedia/vivado/zsrc/src_common/bs_sw_led.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/mymedia/vivado/zsrc/src_common/bs_sw_led.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity bs_sw_led
+-- Compiling architecture rtl of bs_sw_led
+
+} {} {}} C:/mymedia/vivado/zsrc/src_aurora/bs_aurora_atx_data_ramp_gen.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/mymedia/vivado/zsrc/src_aurora/bs_aurora_atx_data_ramp_gen.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity bs_aurora_atx_data_ramp_gen
+-- Compiling architecture rtl of bs_aurora_atx_data_ramp_gen
+
+} {} {}} C:/mymedia/vivado/zsrc/src_common/bs_msec.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/mymedia/vivado/zsrc/src_common/bs_msec.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity bs_msec
+-- Compiling architecture rtl of bs_msec
+
+} {} {}} C:/mymedia/vivado/zsrc/src_uart/bs_uart_apb_rw.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/mymedia/vivado/zsrc/src_uart/bs_uart_apb_rw.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity bs_uart_apb_rw
+-- Compiling architecture rtl of bs_uart_apb_rw
+
+} {} {}} C:/mymedia/vivado/zsrc/src_common/bs_sw_led_ac7200.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/mymedia/vivado/zsrc/src_common/bs_sw_led_ac7200.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity bs_sw_led_ac7200
+-- Compiling architecture rtl of bs_sw_led_ac7200
+
+} {} {}}

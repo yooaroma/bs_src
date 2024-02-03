@@ -1,0 +1,126 @@
+# Compile of bf_buff.vhd was successful.
+# Compile of bf_cmd_reg.vhd was successful.
+# Compile of bf_lib.vhd was successful.
+# Compile of bf_main.vhd was successful.
+# Compile of bf_ram.vhd was successful.
+# Compile of bs_aurora_8b10b_cdc_sync_exdes.vhd was successful.
+# Compile of scb_cmd_gen.vhd was successful.
+# Compile of scb_cmd_record.vhd was successful.
+# Compile of spb_top_cmd_tb.vhd was successful.
+# Compile of bs_lib.vhd was successful.
+# 10 compiles, 0 failed with no errors.
+do C:/mymedia/prj_bs/bs_spb_main/vsim/spb_top_cmd/do/spb_top_cmd_tb_axi.do
+# vsim -msgmode both -displaymsgmode both -lib work spb_top_cmd_tb 
+# Start time: 16:15:26 on Dec 22,2023
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading work.scb_2_spb_type(body)
+# Loading work.spb_top_cmd_tb(behaviour)
+# Loading ieee.math_real(body)
+# Loading work.scb_cmd_gen_ramp(rtl)
+# Loading work.bf_ram(rtl)
+# Loading synopsys.attributes
+# Loading ieee.std_logic_misc(body)
+# Loading work.bs_aurora_8b10b_cdc_sync_exdes(implementation)
+# Loading work.bf_buff(rtl)
+# Loading work.bs_define
+# Loading work.bf_main(rtl)
+# Loading work.ct_dir_delay(arch)
+# Loading work.ct_dir_weight(arch)
+# Loading work.bs_w_define
+# Loading work.ct_pos_ele_weight(arch)
+# Loading work.c_pos_mux(rtl)
+# Loading work.bf_cmd_reg(rtl)
+# Loading work.bs_sync_gen(arch)
+# Loading work.bs_pulse_5us(arch)
+# Loading work.bs_pulse_oneshot(arch)
+# Loading work.bs_reset_expansion(arch)
+# WARNING: No extended dataflow license exists
+run 5 us
+quit -sim
+# End time: 16:18:02 on Dec 22,2023, Elapsed time: 0:02:36
+# Errors: 0, Warnings: 2
+do C:/mymedia/prj_bs/bs_spb_main/vsim/spb_top_cmd/do/spb_top_cmd_tb_100.do
+# vsim -msgmode both -displaymsgmode both -lib work spb_top_cmd_tb 
+# Start time: 16:18:16 on Dec 22,2023
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading work.scb_2_spb_type(body)
+# Loading work.spb_top_cmd_tb(behaviour)
+# Loading ieee.math_real(body)
+# Loading work.scb_cmd_gen_ramp(rtl)
+# Loading work.bf_ram(rtl)
+# Loading synopsys.attributes
+# Loading ieee.std_logic_misc(body)
+# Loading work.bs_aurora_8b10b_cdc_sync_exdes(implementation)
+# Loading work.bf_buff(rtl)
+# Loading work.bs_define
+# Loading work.bf_main(rtl)
+# Loading work.ct_dir_delay(arch)
+# Loading work.ct_dir_weight(arch)
+# Loading work.bs_w_define
+# Loading work.ct_pos_ele_weight(arch)
+# Loading work.c_pos_mux(rtl)
+# Loading work.bf_cmd_reg(rtl)
+# Loading work.bs_sync_gen(arch)
+# Loading work.bs_pulse_5us(arch)
+# Loading work.bs_pulse_oneshot(arch)
+# Loading work.bs_reset_expansion(arch)
+# WARNING: No extended dataflow license exists
+run 1000 us
+quit -sim
+# End time: 16:19:28 on Dec 22,2023, Elapsed time: 0:01:12
+# Errors: 0, Warnings: 1
+# Compile of bf_buff.vhd was successful.
+# Compile of bf_cmd_reg.vhd was successful.
+# Compile of bf_lib.vhd was successful.
+# Compile of bf_main.vhd was successful.
+# Compile of bf_ram.vhd was successful.
+# Compile of bs_aurora_8b10b_cdc_sync_exdes.vhd was successful.
+# Compile of scb_cmd_gen.vhd was successful.
+# Compile of scb_cmd_record.vhd was successful.
+# Compile of spb_top_cmd_tb.vhd was successful.
+# Compile of bs_lib.vhd was successful.
+# 10 compiles, 0 failed with no errors.
+do C:/mymedia/prj_bs/bs_spb_main/vsim/spb_top_cmd/do/spb_top_cmd_tb.do
+# vsim -msgmode both -displaymsgmode both -lib work spb_top_cmd_tb 
+# Start time: 16:20:29 on Dec 22,2023
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading work.scb_2_spb_type(body)
+# Loading work.spb_top_cmd_tb(behaviour)
+# Loading ieee.math_real(body)
+# Loading work.scb_cmd_gen_table(rtl)
+# Loading work.bf_ram(rtl)
+# Loading synopsys.attributes
+# Loading ieee.std_logic_misc(body)
+# Loading work.bs_aurora_8b10b_cdc_sync_exdes(implementation)
+# Loading work.bf_buff(rtl)
+# Loading work.bs_define
+# Loading work.bf_main(rtl)
+# Loading work.ct_dir_delay(arch)
+# Loading work.ct_dir_weight(arch)
+# Loading work.bs_w_define
+# Loading work.ct_pos_ele_weight(arch)
+# Loading work.c_pos_mux(rtl)
+# Loading work.bf_cmd_reg(rtl)
+# Loading work.bs_sync_gen(arch)
+# Loading work.bs_pulse_5us(arch)
+# Loading work.bs_pulse_oneshot(arch)
+# Loading work.bs_reset_expansion(arch)
+# WARNING: No extended dataflow license exists
+quit -sim
+# End time: 16:22:34 on Dec 22,2023, Elapsed time: 0:02:05
+# Errors: 0, Warnings: 2

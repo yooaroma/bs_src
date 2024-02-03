@@ -1,0 +1,143 @@
+C:/mymedia/prj_bs/bs_spb_main/vsim/spb_top_cmd/src/bf_lib.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/mymedia/prj_bs/bs_spb_main/vsim/spb_top_cmd/src/bf_lib.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling package BS_define
+-- Loading package BS_define
+-- Compiling entity ct_dir_delay
+-- Compiling architecture arch of ct_dir_delay
+-- Compiling entity ct_dir_weight
+-- Compiling architecture arch of ct_dir_weight
+-- Compiling package BS_W_define
+-- Loading package BS_W_define
+-- Compiling entity ct_pos_ele_weight
+-- Compiling architecture arch of ct_pos_ele_weight
+-- Compiling entity c_pos_mux
+-- Compiling architecture rtl of c_pos_mux
+-- Compiling entity dpram_chip
+-- Compiling architecture rtl of dpram_chip
+
+} {} {}} C:/mymedia/prj_bs/bs_spb_main/vsim/spb_top_cmd/src/bf_buff.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/mymedia/prj_bs/bs_spb_main/vsim/spb_top_cmd/src/bf_buff.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Loading package SCB_2_SPB_Type
+-- Compiling entity bf_buff
+-- Compiling architecture rtl of bf_buff
+
+} {} {}} C:/mymedia/prj_bs/bs_spb_main/vsim/spb_top_cmd/src/spb_top_cmd_tb.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/mymedia/prj_bs/bs_spb_main/vsim/spb_top_cmd/src/spb_top_cmd_tb.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Loading package SCB_2_SPB_Type
+-- Compiling entity spb_top_cmd_tb
+-- Compiling architecture Behaviour of spb_top_cmd_tb
+
+} {} {}} C:/mymedia/prj_bs/bs_spb_main/vsim/spb_top_cmd/src/bs_aurora_8b10b_cdc_sync_exdes.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/mymedia/prj_bs/bs_spb_main/vsim/spb_top_cmd/src/bs_aurora_8b10b_cdc_sync_exdes.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package ATTRIBUTES
+-- Loading package std_logic_misc
+-- Compiling entity bs_aurora_8b10b_cdc_sync_exdes
+-- Compiling architecture implementation of bs_aurora_8b10b_cdc_sync_exdes
+
+} {} {}} C:/mymedia/prj_bs/bs_spb_main/vsim/spb_top_cmd/src/bf_ram.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/mymedia/prj_bs/bs_spb_main/vsim/spb_top_cmd/src/bf_ram.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity bf_ram
+-- Compiling architecture rtl of bf_ram
+
+} {} {}} C:/mymedia/prj_bs/bs_spb_main/vsim/spb_top_cmd/src/bs_lib.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/mymedia/prj_bs/bs_spb_main/vsim/spb_top_cmd/src/bs_lib.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity bs_sync_gen
+-- Compiling architecture arch of bs_sync_gen
+-- Compiling entity bs_pulse_expansion
+-- Compiling architecture arch of bs_pulse_expansion
+-- Compiling entity bs_pulse_5us
+-- Compiling architecture arch of bs_pulse_5us
+-- Compiling entity bs_pulse_oneshot
+-- Compiling architecture arch of bs_pulse_oneshot
+-- Compiling entity bs_reset_expansion
+-- Compiling architecture arch of bs_reset_expansion
+
+} {} {}} C:/mymedia/prj_bs/bs_spb_main/vsim/spb_top_cmd/src/scb_cmd_gen.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/mymedia/prj_bs/bs_spb_main/vsim/spb_top_cmd/src/scb_cmd_gen.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Loading package MATH_REAL
+-- Loading package SCB_2_SPB_Type
+-- Compiling entity scb_cmd_gen
+-- Compiling architecture rtl of scb_cmd_gen
+-- Compiling entity scb_cmd_gen_table
+-- Compiling architecture rtl of scb_cmd_gen_table
+-- Compiling entity scb_cmd_gen_ramp
+-- Compiling architecture rtl of scb_cmd_gen_ramp
+
+} {} {}} C:/mymedia/prj_bs/bs_spb_main/vsim/spb_top_cmd/src/bf_cmd_reg.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/mymedia/prj_bs/bs_spb_main/vsim/spb_top_cmd/src/bf_cmd_reg.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Loading package SCB_2_SPB_Type
+-- Compiling entity bf_cmd_reg
+-- Compiling architecture rtl of bf_cmd_reg
+
+} {} {}} C:/mymedia/prj_bs/bs_spb_main/vsim/spb_top_cmd/src/bf_main.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/mymedia/prj_bs/bs_spb_main/vsim/spb_top_cmd/src/bf_main.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Loading package SCB_2_SPB_Type
+-- Loading package BS_define
+-- Compiling entity bf_main
+-- Compiling architecture rtl of bf_main
+
+} {} {}} C:/mymedia/prj_bs/bs_spb_main/vsim/spb_top_cmd/src/scb_cmd_record.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/mymedia/prj_bs/bs_spb_main/vsim/spb_top_cmd/src/scb_cmd_record.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling package SCB_2_SPB_Type
+-- Compiling package body SCB_2_SPB_Type
+-- Loading package SCB_2_SPB_Type
+
+} {} {}}

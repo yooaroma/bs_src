@@ -1,0 +1,606 @@
+VHDL 문법을 정리해 놓는다.
+나는 언젠가 빠른 데이터 변환을 위해 CPLD 를 사용해야 해서 
+VDHL 을 처음 접하고 3시간 가량을 죽어라 공부 한 후 바로 코딩해서 제품을 만들었다.
+물로 디버깅이 오래 걸리긴 했지만..
+그것이 샴숑 메모리를 시험하는 장비에 들어갔다는 사실은 비밀이다 ;; 
+
+1. 기본 문법
+
+- VHDL 은 대소문자 구분을 하지 않는다.
+- 파일명은 반드시 공백이 없어야 한다.
+- VHDL 에서 문장간의 구별은 세미콜론(;) 으로 표시 한다.
+- '--' 이후 그 줄의 끝까지 주석처리 된다.
+- 문장의 첫 글자는 숫자 또는 특수문자를 사용 할 수 없다.
+
+2. VHDL 의 기본 구성
+
+Entity Declaration
+Architecture Body
+객체(Object)
+자료형(Data Type)
+연산자(Operator)
+동작적 표현(Behavioral Description)
+구조적 표현 (Structural Description)
+순차 처리문
+병행 처리문
+
+3. VHDL 구성 설명
+
+===== Entity Declaration =====
+Entity Declaration : 입,출력선을 정의 한다.
+Entity 선언부 는 설계하고자 하는 시스템의 외적 연결을 담당 한다.
+회로의 내부적인 구조나 연결등을 고려할 필요가 없으며, 여기서 정의한 것을 통해 다음 Architecture Body 에서 내부적 동작을 표현한다.
+즉, 입출력 선을 정의 하는 부분이다.
+
+예)
+entity TEST_2AND is
+port( 
+in_a, in_b : in std_logic;
+out_q : out std_logic
+);
+end TEST_2AND;
+
+주의사항 : 선언부의 마지막 문장에서는 세미콜론을 넣지 않는다.
+
+===== Architecture Body =====
+Architecture Body : 시스템의 동작을 세부적으로 정의 한다.
+예) 
+architecture TEST of TEST_2AND is
+begin
+out_q <= in_a and in_b;   -- out_q 에 in_a & in_b 값을 출력 한다.
+end TEST
+
+===== 객체(Object) =====
+객체(Object) : 값을 가질 수 있는 것을 말한다. 객체를 선언 할때는 어떠한 자료형을 사용 할 것인가도 결정 해야 한다.
+객체의 종료 : signal, variable , constant
+
+=== signal === 
+VHDL 합성시 Wire 로 구현된다. 
+각 컴퍼넌트의 연결에 사용되는 외적 변수 이다.
+signal 형태의 객체에 값을 대입 할 때는 <= 를 사용 한다.
+
+
+외부 연결 신호의 선언은 signal 또는 port 로 선언 할 수 있다.
+signal 과 port 의 차이점은 선언시 입,출력의 구분 여부에 있다. signal 은 입출력 구분을 하지 않고 선언 한다.
+또한 signal 의 선언 위치는 architecture 안에서 시작을 나타내는 begin 위 이다.
+
+port 의 선언예
+port(
+a,b : in std_logic;
+c : out std_logic
+);
+
+signal 의 선언예
+architecture TEST of logic is
+signal a,b : std_logic;
+sinal temp : std_logic_vector(3 downto 0 ) := "1100";   -- 초기값을 대입할때는 := 를 사용 한다.
+begin
+process 문에서 signal 을 사용 할때 <= 는 즉시 대입 되지 않고 process 문이 끝나는 end process 를 만났을때 이다. 
+
+=== variable ===
+proces 내부에서만 유효한 내적 변수이며 즉, 지역변수의 개념이다.
+signal 과 같이 wire 로 구현 되지 않으며 단지 중간 연산 단계에 주로 사용 된다.
+variable 에 사용되는 대입 기호는 :=  이고, 즉시 입력된다.
+선언 방식은 signal 과 유사 하다.
+process 문의 시작을 알리는 begin 위에 위치한다.
+
+예)
+process(a,b)
+variable tmp1, tmp2 : std_logic;
+begin
+variable 은 process 문을 빠져나오면 값이 상실 되므로 값을 보존 하기 위해서는 process 문을 빠져 나오기 전에 signal 에 대입해야 한다.
+
+=== constant ===
+초기에 선언한 상수의 값을 유지하는데 사용되며, 선언된 초기 값을 바꿀 수 없다. 
+대입 기호는 variable 과 같게 := 를 사용 한다.
+선언 위치는 loop, generate문, 부프로그램, generic 에서 선언된다.
+
+선언 예)
+architecture TEST of logic is
+constant delay : integer :=5ns;
+begin
+
+===== 자료형(Data Type) ===== 
+VHDL 에서 객체는 거의 무한한 종류의 자료형을 사용 할 수 있고, 사용자가 직접 만들 수 도 있다.
+자료형은 표현 적 분류와 기능적 분류로 나눌 수 있다.
+
+=== 표현적 분류 ===
+Predefinde Data Type (이미 정의된 자료형 )
+User-Definde Type (사용자 정의 자료형)
+
+=== 기능적 분류 ===
+   * scalar type(숫자형)
+숫자로 그 순서를 정의 할 수 있는 자료형
+|  열거형(Enumeration type)  |  BIT, BOOLEAN, CHARACTER, STD_LOGIC  |
+|  정수형(integer type)        |  INTEGER                                      |
+|  실수형(floating type)       |  REAL                                          |
+|  물리형(physical type)      |  UNIT : TIME,DISTANCE                       |
+
+   * Composite Type (복합형)
+숫자형을 재 조합하여 필요한 만큼만 사용 할 수 있도록 선언할 경우와 여러 가지를 혼합하여 사용 하고 싶을때 사용 한다.
+|  제한형(constraint type)     |  TO,DOWNTO                           |
+|  배열형(array type)          |  BIT_VECTOR, STRING                  |
+|  무제한형(unconstraint type)|  STD_LOGIC_VECTOR                  |
+|  집합형(record type)         |  RECORD                               |
+
+   * access type(연결형)
+point 형식과 비슷하다, 시뮬레이션을 위한 용도 외에 하드웨어적으로 구현된 것은 미비해 잘 사용 하지 않는다.
+|   연결형(access type)   |   ACCESS, NEW |
+
+   *file type
+입출력에 관련된 data type 으로써 외부와의 입출력이나 특정 file의 변수를 선택해 사용 한다.
+이 자료형은 VHDL 의 시뮬레이션 디버깅에서 많이 사용되며, 특별한 회로 동작의 입출력을 제외하면 거의 사용 되지 않는다.
+|  파일형(file type)  |  FILE   |
+
+=== 선언 방법 ===
+Type ~ is 라는 예약어를 사용한다.
+* 열거형 : 문자열을 하나의 data 로 묶어서 선언한다.
+예)
+
+type bit is ('0','1');
+type boolean is (true, false);
+
+* 정수형 : 정수형의 범위는 정해져 있다.
+예)
+
+Type integer is range -2147483647 to 2147483647
+Type byte is range -127 to 127;
+
+
+* 실수형 : 실수형의 범위도 정해져 있으며, 최대,최소 값은 High, Low 라는 Attribute 를 사용 할 수 있다.
+예)
+Type real is range -1.0E38 to +1.0E38;
+
+* 물리형 : 시간, 거리 전류 등의 물리적인 단위를 나타낸다. 
+사용자가 범위를 지정 할 수 있으며, 지정 하지 않을 경우 정수형 범위와 같다.
+
+예)
+Type time is range -1.0E38 to +1.0E38;
+unit ps;
+ ns = 1000ps;
+ us = 1000ns;
+ ms = 1000us;
+ sec = 1000ms;
+ min = 60sec;
+end unit;
+
+* 집합형 : 집합형은 다른 종류의 숫자형이나 배열형을 하나로 만들어 사용 할 수 있다.
+각각의 필드로 나뉘어져 별개의 데이터 타입을 선언 할 수 있다. 
+record type 으로 선언된 객체의 요소 값을 참조 하기 위해서 객체와 요소 사이에 . 을 사용 한다. 
+C 언어의 구조체로 이해 하면 쉽다.
+예)
+Type information is
+record 
+value : bit;
+context : integer;
+end record;
+
+variable kk : information;
+kk.valu := '1'
+kk.context := 9;
+
+* 배열형 : 같은 종류의 숫자형을 한군데 묶어서 사용 할수 있고, 선언 방법에 따라 두 가지로 나뉜다.
+  - 제한형 : 이미 선언된 type 을 정해진 범위에서 열거하게 만든 것으로 일종의 bus type 으로 만든 것이다. 
+여기서 to 와 downto 는 내림차순과 오름차순으로 정의 하는 것이다.
+
+예)
+
+Type byte is array(7 downto 0) of bit;
+variable a : byte;
+a:="01110000";
+
+  - 무제한형 : 선언된 type 을 또 하나의 변형된 새로운 type 으로 다시 만드는 열거형 이다.
+예)
+
+Type bit_vector( natural range <> )of bit;
+Type string is array ( positive range <> ) of character;
+
+* 연결형 : 동작적 모델링이나 하드웨어/소프트웨어 혼합형을 모델링 할 때 동작 메모리 할당을 필요로 하는 경우에 유용하고, 자료구조의 크기를 미리 결정 할 수 없는 경우에 사용 한다. 
+예를 들어 큐,스택 구조에서 연결 리스트를 만들기 위해 사용 한다.
+- 불완전 선언 : type 선언시 아무런 표현도 하지 않고 선언자만을 표시한다
+예) Type CELL;
+-일반 선언 : Type 선언시 아무런 표현도 하지 않고 선언자만을 표시
+예) Type LINK is access CELL;
+
+   * 파일형 : VHDL 규격 패키지의 TEXTIO 부분에 선언되어 있기 때문에 활용만 하면 된다.하지만 잘 안 쓴다.
+예)
+Type TEXT is file of STRING;
+file INPUT : TEXT is in "std_input";
+file OUTPUT : TEXT is out "std_output";
+
+===== 연산자(Operator) ===== 
+연산자를 연속으로 사용 할 경우 우선 순위에 따라 순위가 결정된다. 
+^  우선순위  ^      연산자   ^               기호             ^
+|      1     |  논리 연산자  |  or, and, nor, nand, xor, xnor |  
+|      2     |  관계 연산자  |  =, /=. >, <, >=, <=           |
+|      3     |  덧셈 연산자  |  +, -, &                       |
+|      4     |  단항 연사자  |  +, -                          |
+|      5     |    곱셈       |  *, /, mod, rem                |
+|      6     |  기타 연산자  |  **, abs, not                  |
+
+여러 논리 연산자를 함께 사용할 경우나 nand 혹은 nor 를 연속해서 사용 할 경우 결합법칙이 성립되지 않으므로 과롷를 사용 하고 결합순서에 주의 해야 한다.
+
+===== 동작적 표현(Behavioral Description) ===== 
+동작적 표현은 자료 흐름적 표현과 process 문에 의한 표현으로 나뉘어 진다.
+
+   * 자료흐름적 표현 (data description)
+부울 대수식, RTL 혹은 연산자를 사용하여 입력과 출력사이의 관계를 나타내는 것을 말한다. 
+자료 흐름적 표현은 주로 병행 처리문에서 사용되며, 문장의 순서에 무관하게 동시에 수행 된다.
+예)
+architecture data_flow of compare_logic is 
+begin
+equal <= not(a(1) xor b(1)) and not( a(0) xor b(0) );
+end data_flow;
+
+   * Process 문에 의한 표현
+자료흐름적 표현 방법보다 추상화된 개념이다. 
+회로의 기능적 표현을 기능적 혹은 알고리즘적으로 기술 하는 것이다. 
+Process 문은 하드웨어 시스템을 모듈별로 기술 하는데 편리하다.
+시스템은 하드웨어 모듈로 구성되어 있고, 각 모듈은 병행처리를 하면서 서로간의 통신을 통해 관계를 유지한다.
+architecture 내에 여러개의 process 문이 있을 수 있으며, 각 precess 문은 병행처리를 하지만, process 문 내부는 순차처리를 한다.
+또한 process문은 감지신호의 변화를 통해 동작하며 이를 통해 서로 통신을 한다.
+예)
+architecture sample of compare_logic is
+begin
+process(a,b)  --()dksdml a,b 를 감지신호라 한다.
+   begin
+ if a = b then
+  equal <= '1';
+ else
+  equal <= '0';
+ end if;
+   end process
+end sample;
+
+===== 구조적 표현 (Structural Description) ===== 
+구조적 표현은 동작적 표현보다 하드웨어 구조에 가장 가까운 표현이라 할 수 있다. 
+하드웨어 회로상에서 IC 소자들을 서로 선으로 연결하여 시스템을 구성하듯이 이미 설계된 Component 를 이용하여 그 Component 들을 서로 연결하여 system을 기술 하려는 방식이다. 
+구조적 표현에는 generate 문과 generic 문이 있다.
+
+   * component 문
+이미 설게한 entity를 부품으로 간주하여 구조적으로 설계하는 문이다. 
+이를 사용하기 위해서는 component 를 선언 해야 한다. 
+또한 port map() 이라는 예약어를 사용해 component 를 사례화 시켜야 한다.
+예)
+
+entity nand_component is
+port(
+in1,in2,in3,in4 : in std_logic;
+out1,out2 : out std_logic
+);
+end nand_component;
+
+
+
+architecture sample of compare_logic is
+component nand2  -- component nand2 를 선언함.
+port(
+a, b : in std_logic;
+y : out std_logic
+);
+end component;
+
+begin
+u1 : nand2 port map(in1, in2, out1 );  -- nand2 를 사례화, 위치결합 방식
+u2 : nand2 port map( a=>in3, b=>in4, y=>out2); -- 이름결합 방식
+end sample;
+
+
+   * generate 문
+generate 문은 component 를 반복적으로 사용하기 위해서 사용한다. 
+generate 문은 단순 반복생성을 위한 for-generate 문과 주어진 조건에 따라 반복처리하는 if-generate 문이 있다.
+
+- for-generate 문
+예)
+entity nand_component_for_generate is
+port(
+a,b : in std_logic_vector( 3 downto 0 );
+y : out std_logic_vector ( 3 downto 0 )
+);
+end nand_component_for_generate;
+
+architecture sample of nand_component_generate is
+component nand2
+port(
+a, b : in std_logic;
+y : out std_logic
+);
+end component;
+
+begin
+g1 : for i in 3 downto 0 generate
+ux : nand2 port map ( a(i), b(i), y(i) );
+end generate g1;
+end sample;
+
+- if-generate 문
+예)
+entity xor_component_if_generate is
+port(
+a : in std_logic_vector( 4 downto 0 );
+parity_check : ot std_logic
+);
+end nand_component_generate;
+
+architecture sample of nand_component_generate is
+signal y : std_logic_vector( 3 downto 0 );
+component xor2
+prot(
+a,b : in std_logic;
+c : out std_logic
+);
+end component;
+
+begin
+g1 : for i in 3 downto 9 generate   -- g1,g2,g3,u4, ux 는 레이블이다.
+ g2 : if i =3 generate
+   u4 : xor2 port map ( a(i+1), a(i), y(i) );
+   end generate g2;
+  g3 : if i < 3 generate
+   ux : xor2 prot map ( y(i+1), a(i), y(i) );
+  end generate g3;
+end generate g1;
+
+parity_check <= y(0);
+end sample
+
+   * generic 문
+generic(일반화)이란 Entity 내에 기술하며 generic 의 매개변수를 entity에 전달 함으로서, 회로의 개수나 입출력의 크기가 매개변수에 의해 결정되게 하는 것을 말한다.
+
+generic 의 매개변수로 사용되는 개체는 상수이며, 모드는 in 으로 되어 있기 때문에 반드시 명시할 필요가 없다, 
+또한 이 매개변수는 사용용도에 따라 두 가지로 나뉜다.
+반복생성의 개수를 위한 매개 상수와 입출력의 크기를 위한 매개상수이다.
+generic 의 사용은 사용할 component 의 entity 에 먼서 선언을하고 다음 component 를 사용하는 logic system 에서 이를 이용 한다.
+
+- 반복 생성의 개수를 위한 매개 상수
+예)
+entity nand_generic is
+generic (size : integer :=8 );
+port(
+x,y : in std_logic_vector( size-1 downto 0 );
+ z: out std_logic_vector ( size-1 downto 0 ) ) ;
+end nand_generic;
+
+architecture sample of nand_generic is
+begin
+z <= x nand y;
+end sample;
+
+entity nand_sys is
+prot(
+a, b : in std_logic_vector( 3 downto 0 );
+c : out std_logic_vector(3 downto 0 ) ) ;
+end nand_sys;
+architecture sample of nand_sys is
+component nand_generic
+generic( size : integer );
+
+port ( x,y : in std_logic_vector( size-1 downto 0 );
+z : out std_logic_vector( size-1 downto 0 ) );
+end component;
+
+begin
+ux : nandg generic map(4) port map ( a, b, c );
+end sample;
+
+- 입출력의 크기를 위한 매개 상수
+예)
+entity nandx_generic is
+generic ( size : integer );
+port ( 
+x : in std_logic_vector( size-1 downto 0 );
+z : out std_logic 
+);
+end nandx_generic;
+
+archigecture sample of nandx_generic is
+begin
+process( x )
+ variable tmp : std_logic;
+begin
+ gemp :=x(0);
+ for l in 1 to size-1 loop
+  temp := temp and x(i);
+  end loop;
+z <= not(temp);
+end process;
+ end sample;
+
+entity nand_sys is
+port(
+a : in std_logic_vector (3 downto 0 );
+b : out std_logic 
+);
+end nand_sys;
+
+architecture sample of nand_sys is
+component nandx_generic
+generic ( size : integer );
+port(
+x : in std_logic_vector( size-1 downto 0 );
+ z: out std_logic );
+end component;
+ begin
+ux : nandx generic map(4) port map(a,b);
+end sample;
+
+===== 순차 처리문 ===== 
+순차 차리문은 process 문 내에서 기술되며 wait, if, case, for-loop 문이 있다.
+proces 문 끼리는 병행처리되며, process 문 내부에서는 순차 처리 된다.
+
+   * Process 문
+형식
+<code>
+[레이블:] process [(감지신호 리스트)]
+begin
+  순차처리문;
+end process [레이블 ];
+</code>
+
+레이블은 생략해도 되며, 감지신호 리스트은 대개 process 내의 입력 신호들로 구성되며, 이 감지 신호의 변화가 생길 때 process 문이 수행된다. 
+하나의 architecture 내에 여러개의 process 문이 사용 될 수 있다.
+
+   * if 문
+고급언어와 같이 조건이 참이면 수행되는 if(조건) then (처리) 형식이다.
+- 일반적 if 문
+if 문은 멀티플랙서를 이용하여 등가적으로 표현 할 수 있으며, if 문의 하드웨어 구현에 대한 이해에 도움을 준다.
+예)
+<code>
+if ( sel = '1')then
+ y <= a;
+else
+ y <= b;
+end if;
+</code>
+
+- 다중 if 문
+예)
+<code>
+if ( sel0 = '1' ) then
+ y<=a;
+elsif ( sel1 = '1' )then
+ y<=b;
+else
+ y<=c;
+end if;
+</code>
+
+- 기억 소자가 내포된 if 문
+이것은 else 문이 없는 if 문이다, 
+여기서 if 문에서 거짓으로 판단된 후 처리할 조건인 else 문이 없기 때문에 else 에 해당 하는 출력은 과거의 출력 값을 그대로 유지 하게 된다.
+따라서 출력은 조건이 거짓일 때는 과거의 출력 값을 지녀야 하므로 ,VHDL 합성시에 기억소자가 내포된다. 
+이러한 기억소자가 내포된 IF 문은 예가 Latch 와 flip/flop 이다.
+if 조건이 level trigger 에 의해 출력이 변화 되면 래치이고, 신호의 상승 혹은 하강엣지 에서 출력이 변화 되면 플립플롭이다. 
+VHDL 에서 이들을 표현하기 위해서 event 라는 예약어를 사용한다.
+예)
+<code>
+if clk'event and clk = '1' then      -- Rising Edge 에서 동작 하는 플립플롭
+q<=d;
+end if;
+
+if clk'event and clk ='0' then       -- falling edge 에서 동작 하는 플립플롭
+q<=d;
+end if;
+
+if en = '1' then                     -- level trigger 에서 동작 하는 latch  
+q<=d;
+end if;
+</code>
+
+
+
+   * case 문
+case 문은 수식 값에 따라 문장을 선택 한다. 
+case 문의 수식 값은 integer형, 열거형 등과 같은 자료형이 주로 사용되며, 진리표와 같은 기능표에 대해 설계에 적합 하다. 
+case 문은 when의 값과 비교하여 일치하면 그 문장을 수행 한다. 
+when 의 수식을 여러 값으로 표현할 때는 | (or) 기호를 사용 한다.
+예)
+<code>
+case sel is
+when "00" => y <= d(0);
+when "01" => y <= d(1);
+when "02" => y <= d(2);
+when others => y <= d(3);
+end case;
+
+    * Loop 문
+Loop문은 반복처리 하기 위한 것이다. 
+loop 문은 for-loop 문과 while-loop 형식 및 단순 loop 형식이 있다. 
+형식
+<code>
+[레이블] : for 루프변수 in 변수 범위 loop
+ 순차 처리문;  -- 범위 만큼 반복
+end loop [레이블];
+
+[레이블] : while whrjs loop
+ 순차 처리문;  -- 조건이 참일때 가지 반복
+end loop [레이블];
+
+[레이블] : loop
+ 순차 처리문;  -- 무한 반복
+end loop [레이블];
+</code>
+
+- for-loop 형식
+for-loop 문은 루프변수가 1씩 증가 또는 감소 하면서, 최종 값에 도달 할때 까지 loop 문에 둘러싸인 순차 처리 문을 반복 처리 한다. 
+루프변수는 어떠한 객체 로도 선언되지 않아야 되며, 오직 for-loop 의 루프변수로만 사용 되어야 한다.
+예)
+<code>
+entity and_logic is
+port(
+a,b : in std_logic_vector( 3 downto 0 );
+y : out std_logic_vector( 3 downto 0 ) ) ;
+end and_logic;
+
+architecture sample of and_logic is
+begin
+process( a, b )
+begin
+ for i in 3 downto 0 loop
+ y(1) <=a(i_ and b(i);
+end loop;
+end process;
+end sample;
+</code>
+
+- while-loop 형식
+while(조건) loop 문은 조건이 참이면 loop 에 둘러싸인 순차 처리문을 반복수행 한다. 
+while-loop 문의 조건은 반복횟수가 명확히 결정되지 않으면, 논리합성을 할 수 없으므로 주의 해야 한다.
+단순 loop 문은 무한히 반복하므로 loop를 빠져 나오기 위해서 exit 문이 필요하며, while 문의 경우와 같이 반복횟수가 정해지지 않을 경우에는 VHDL 논리합성이 될 수 없다. 
+대부분의 VHDL 합성기는 while-loop 문과 단순 loop 문을 지원 하지 않는다.
+
+===== 병행 처리문 ===== 
+회로에서는 입력선로에서 출력선로로 신호가 전달되어 처리될 때 순차처리되는 것이 아니라 병행처리된다. 
+따라서 하드웨어 구조를 기술하는 VHDL 의 문장은 병 행처리에 기반을 두고 있다고 볼 수 있다.
+Architecture 문 내부에 표현되는 모든 VHDL 문장은 process 문의 내부를 제외하고는 모두가 순서에 무관하는 병행 처리문이다. 
+이러한 병행 처리문에는 조건적 병행처리문 (when ~ else)과 선택적 병행 처리문(whith~select)이다.
+
+   * 조건적 병행 처리문 : 순차처리문인 if 문과 유사하다.
+signal_이름<=파형1 when(조건1) else
+  파형2  when(조건2)else
+  파형n-1 when (조건n-1)else
+  파형n;
+
+예)
+<code>
+entity logic is
+port(
+a,b,c,d:in std_logic;
+y: out std_logic
+);
+end logic;
+
+architecture sample of logic is
+begin
+y<='0' when c='0' else
+   '1' when d='1' else
+   '0' when ( a='1') and (b='1') else
+   '1';
+end sample;
+</code>
+
+   * 선택적 병행 처리문 : with 이하의 수식값에 의해 판단하며, case문과 유사하다.
+with(수식)select
+signal_이름 <= 파형1 when(선택값1),
+파형2 when(선택값2),
+파형n-1 when(선택값n-1)else
+파형n  when others;
+
+예)
+<code>
+entity logic is
+prot(
+x:in std_logic_vector(1 downto 0);
+y: out std_logic_vector( 3 downto 0 ) ) ;
+end logic;
+architecture sample of logic is
+begin
+with x select
+y <= "0001" when "00";
+"0010"when "01"
+"0100"when "10"
+"1000"when others;
+end sample;
+</code>
+
+[출처] VHDL 문법 정리|작성자 라온이파덜
