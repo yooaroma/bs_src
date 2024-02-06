@@ -14,13 +14,13 @@ entity p1_ram is
   );
   port (
     --    
-    s_axis_p1_ram_tvalid : in std_logic;
-    s_axis_p1_ram_tlast : in std_logic;
-    s_axis_p1_ram_tdata : in std_logic_vector(31 downto 0);
+    s_axis_tvalid : in std_logic;
+    s_axis_tlast : in std_logic;
+    s_axis_tdata : in std_logic_vector(31 downto 0);
     -- 
-    m_rd_p1_ram_tnext : out std_logic;
-    s_rd_p1_ram_taddr : in std_logic_vector(6 downto 0);
-    s_rd_p1_ram_tdata : out std_logic_vector(31 downto 0);
+    m_rd_tnext : out std_logic;
+    s_rd_taddr : in std_logic_vector(6 downto 0);
+    s_rd_tdata : out std_logic_vector(31 downto 0);
     --
     reset_n : in std_logic;
     Clk_rd : in std_logic;
@@ -67,14 +67,14 @@ architecture rtl of p1_ram is
   signal wr_taddr_high : std_logic;
   signal rd_taddr_high : std_logic;
   signal wr_taddr_high_i : std_logic;
-  signal s_axis_p1_ram_tlast_i : std_logic;
-  signal s_axis_p1_ram_tlast_i_i : std_logic;
+  signal s_axis_tlast_i : std_logic;
+  signal s_axis_tlast_i_i : std_logic;
   signal reset_n_i : std_logic;
   -- signal
   --
 begin
   --
-  m_rd_p1_ram_tnext <= s_axis_p1_ram_tlast_i_i;
+  m_rd_tnext <= s_axis_tlast_i_i;
   --
   p_wr : process (Clk, reset_n_i)
   begin
@@ -82,9 +82,9 @@ begin
       wr_taddr_i <= (others => '0');
       wr_taddr_high <= '0';
     elsif (rising_edge(Clk)) then
-      if (s_axis_p1_ram_tvalid = '1') then
-        RAM(conv_integer(wr_taddr_high & wr_taddr_i)) <= s_axis_p1_ram_tdata;
-        if (s_axis_p1_ram_tlast = '1') then
+      if (s_axis_tvalid = '1') then
+        RAM(conv_integer(wr_taddr_high & wr_taddr_i)) <= s_axis_tdata;
+        if (s_axis_tlast = '1') then
           wr_taddr_i <= (others => '0');
           wr_taddr_high <= not wr_taddr_high;
         else
@@ -98,7 +98,7 @@ begin
   begin
     rd_taddr_high <= not wr_taddr_high_i;
     if (rising_edge(Clk_rd)) then
-      s_rd_p1_ram_tdata <= RAM(conv_integer(rd_taddr_high & s_rd_p1_ram_taddr)) after 1 ns;
+      s_rd_tdata <= RAM(conv_integer(rd_taddr_high & s_rd_taddr)) after 1 ns;
     end if;
   end process;
   --
@@ -112,8 +112,8 @@ begin
     --    
     Clk => Clk,
     reset_n => reset_n_i,
-    tlast_in => s_axis_p1_ram_tlast,
-    tlast_out => s_axis_p1_ram_tlast_i
+    tlast_in => s_axis_tlast,
+    tlast_out => s_axis_tlast_i
     --    
   );
   --
@@ -123,8 +123,8 @@ begin
     --    
     Clk => Clk,
     Clk_sync => Clk_rd,
-    user_in => s_axis_p1_ram_tlast_i,
-    user_sync_out => s_axis_p1_ram_tlast_i_i
+    user_in => s_axis_tlast_i,
+    user_sync_out => s_axis_tlast_i_i
     --    
   );
   --

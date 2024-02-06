@@ -75,10 +75,12 @@ entity p1_main is
     m_axis_bit_18_tvalid : out std_logic;
     m_axis_bit_18_tdata : out std_logic_vector(31 downto 0);
     -- 
-    m_rd_p1_main_taddr : out std_logic_vector(6 downto 0);
-    m_rd_p1_main_tdata : in std_logic_vector(31 downto 0);
+    m_rd_taddr : out std_logic_vector(6 downto 0);
+    m_rd_tdata : in std_logic_vector(31 downto 0);
     -- 
-    s_p1_main_tstart : in std_logic;
+    m_tnext : out std_logic;
+    --
+    s_tstart : in std_logic;
     -- 
     reset_n : in std_logic;
     Clk : in std_logic
@@ -111,10 +113,10 @@ architecture rtl of p1_main is
   --
 begin
   --
-  rd_tstart <= s_p1_main_tstart;
+  rd_tstart <= s_tstart;
   --
-  m_rd_p1_main_taddr <= rd_taddr;
-  rd_tdata <= m_rd_p1_main_tdata;
+  m_rd_taddr <= rd_taddr;
+  rd_tdata <= m_rd_tdata;
   --
   m_axis_cmd_tvalid <= rd_tvalid_i;
   m_axis_cmd_tlast <= rd_tlast_i;
@@ -179,10 +181,12 @@ begin
   --
   p_rd : process (Clk)
     variable idx_v : natural := 0;
+    variable idx_10u_v : natural := 0;
   begin
     if (reset_n = '0') then
       rd_tenable <= '0';
       rd_tstart_i <= '0';
+      idx_10u_v := 0;
     elsif (rising_edge(Clk)) then
       rd_tvalid <= rd_tenable;
       rd_tstart_i <= rd_tstart;
@@ -195,6 +199,11 @@ begin
         sel_beam_tvalid <= (others => '0');
         sel_beam_reg_i <= sel_beam_reg;
         idx_v := 0;
+        if (idx_10u_v = 0) then
+          m_tnext <= '1';
+        else
+          m_tnext <= '0';
+        end if;
       end if;
       if (rd_tenable = '1') then
         rd_taddr <= rd_taddr + '1';
@@ -244,6 +253,11 @@ begin
       end if;
       if (rd_taddr = 71) then -- 36 sum_L3/L2/L1/C0/R1/R2/R3
         beam_start <= '0';
+        if (idx_10u_v = 99) then
+          idx_10u_v := 0;
+        else
+          idx_10u_v := idx_10u_v + 1;
+        end if;
       end if;
       if (beam_start = '1') then
         sel_beam_bit_reg_i <= '0' & sel_beam_bit_reg_i(35 downto 1);

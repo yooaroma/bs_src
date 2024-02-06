@@ -41,6 +41,8 @@ architecture rtl of p1_buff32k is
   signal tcnt : std_logic_vector(6 downto 0) := (others => '0');
   signal tstart_addr : std_logic_vector(14 downto 0) := (others => '0');
   --
+  signal tdata_tnext : std_logic_vector(31 downto 0) := (others => '0');
+  --
 begin
   --
   m_rd_p1_buff32k_tstart_addr <= tstart_addr;
@@ -74,10 +76,12 @@ begin
     end if;
   end process;
 
+  s_rd_p1_buff32k_tdata <= tdata_tnext;
+
   p_rd : process (Clk)
   begin
     if (rising_edge(Clk)) then
-      s_rd_p1_buff32k_tdata <= RAM(conv_integer(s_rd_p1_buff32k_taddr)) after 1 ns;
+      tdata_tnext <= RAM(conv_integer(s_rd_p1_buff32k_taddr)) after 1 ns;
     end if;
   end process;
   --
