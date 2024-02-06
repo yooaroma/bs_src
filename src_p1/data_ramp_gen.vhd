@@ -1,4 +1,3 @@
-
 -- //=============================================================================
 -- //=============================================================================
 -- //=============================================================================
@@ -8,20 +7,24 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 use ieee.std_logic_unsigned.all;
 
-entity p1_atx_data_ramp_gen is
+entity data_ramp_gen is
   generic (
-    ADDRESS_MAX : natural := 75; -- 300 / 4 = 75
-    ADDRESS_WIDTH : natural := 7;
+    ADDRESS_MAX : natural := 256; -- 256 / 4 = 64
+    ADDRESS_WIDTH : natural := 8;
     DATA_WIDTH : natural := 32
   );
   port (
     --    
-    m_axis_p1_atx_tvalid : out std_logic;
-    m_axis_p1_atx_tready : in std_logic;
-    m_axis_p1_atx_tlast : out std_logic;
-    m_axis_p1_atx_tdata : out std_logic_vector(31 downto 0);
+    m_axis_data_tvalid : out std_logic;
+    m_axis_data_tready : in std_logic;
+    m_axis_data_tlast : out std_logic;
+    m_axis_data_tdata : out std_logic_vector(DATA_WIDTH * 2 - 1 downto 0);
+    --    
+    m_axis_config_tvalid : out std_logic;
+    m_axis_config_tready : in std_logic;
+    m_axis_config_tdata : out std_logic_vector(15 downto 0);
     -- 
-    m_rd_p1_atx_tstart : in std_logic;
+    m_rd_tstart : in std_logic;
     --
     reset_n : in std_logic;
     Clk : in std_logic
@@ -29,19 +32,21 @@ entity p1_atx_data_ramp_gen is
   );
 end entity;
 --
-architecture rtl of p1_atx_data_ramp_gen is
+architecture rtl of data_ramp_gen is
   --
   -- componet
   --  
-  -- signal m_rd_p1_atx_taddr : std_logic_vector(6 downto 0);
-  -- signal m_rd_p1_atx_tdata : std_logic_vector(31 downto 0);
+  -- signal m_rd_taddr : std_logic_vector(6 downto 0);
+  -- signal m_rd_tdata : std_logic_vector(31 downto 0);
   signal rd_tstart : std_logic;
   signal rd_tstart_i : std_logic;
+  signal rd_tstart_i_i : std_logic;
+  signal rd_tstart_i_i_i : std_logic;
   signal rd_tenable : std_logic := '0';
   signal rd_tvalid : std_logic;
   signal rd_tready : std_logic;
   signal rd_tlast : std_logic;
-  signal rd_taddr : std_logic_vector(6 downto 0);
+  signal rd_taddr : std_logic_vector(ADDRESS_WIDTH - 1 downto 0);
   signal rd_tdata_o : std_logic_vector(31 downto 0);
   signal rd_tdata_i : std_logic_vector(31 downto 0);
   signal rd_tdata_i_i : std_logic_vector(31 downto 0);
@@ -50,52 +55,72 @@ architecture rtl of p1_atx_data_ramp_gen is
   --
   constant C_DATA_ZERO : std_logic_vector(DATA_WIDTH - 1 downto 0) := (others => '0');
   --
-  constant a_length : natural := 12;
   signal tch_data_enable : std_logic := '0';
   signal tProgramCount : std_logic_vector(31 downto 0);
-  signal idx_n_sincos : std_logic_vector(a_length - 1 downto 0);
+  --
+  signal tconfig_start_i : std_logic := '0';
+  signal tvalid_config : std_logic := '0';
+  signal tready_config : std_logic := '0';
+  signal tdata_config : std_logic_vector(15 downto 0) := (others => '0');
   --
 begin
   --      
-  rd_tstart <= m_rd_p1_atx_tstart;
+  rd_tstart <= m_rd_tstart;
   --
-  m_axis_p1_atx_tvalid <= rd_tvalid;
-  rd_tready <= m_axis_p1_atx_tready;
-  m_axis_p1_atx_tlast <= rd_tlast;
-  m_axis_p1_atx_tdata <= rd_tdata_o;
+  -- m_axis_config_tvalid <= '0';
+  -- m_axis_config_tdata <= (others => '0');
+  
   --
-  -- m_rd_p1_atx_taddr <= rd_taddr;
-  -- rd_tdata_i <= m_rd_p1_atx_tdata;
+  m_axis_config_tvalid <= tvalid_config;
+  tready_config <= m_axis_config_tready;
+  m_axis_config_tdata <= tdata_config;
+  --
+  p_fft_config : process (Clk,reset_n)
+  begin
+    if (reset_n = '0') then
+      tconfig_start_i <= '0';
+      tvalid_config <= '0';
+      tdata_config <= X"0000";
+    elsif (rising_edge(Clk)) then
+      if (tconfig_start_i = '0') then
+        tconfig_start_i <= '1';
+        tvalid_config <= '1';
+        tdata_config <= X"0001"; -- BFP1
+      end if;
+      if (tvalid_config = '1') and (tready_config = '1') then
+        tvalid_config <= '0';
+      end if;
+    end if;
+  end process;
+  --
+  --
+  m_axis_data_tvalid <= rd_tvalid;
+  rd_tready <= m_axis_data_tready;
+  m_axis_data_tlast <= rd_tlast;
+  m_axis_data_tdata <= X"00000000" & rd_tdata_o;
+  --
+  -- m_rd_taddr <= rd_taddr;
+  -- rd_tdata_i <= m_rd_tdata;
+
+
 
   p_rd : process (Clk, reset_n)
   begin
     if (reset_n = '0') then
       tProgramCount <= (others => '0');
       rd_tdata_i <= (others => '0');
-      idx_n_sincos <= (others => '0');
     elsif (rising_edge(Clk)) then
+      -- if (rd_taddr > 0) and (rd_taddr < 20) then
       if (rd_taddr = 0) then
-        rd_tdata_i <= X"7F7F7F7F";
-        idx_n_sincos <= tProgramCount(a_length - 1 downto 0);
-      elsif (rd_taddr = 1) then
-        rd_tdata_i <= tProgramCount;
-      elsif (rd_taddr = 10) then
-        rd_tdata_i <= X"00000054"; -- Save_L1, Save_C, Save_R1
-      elsif (rd_taddr = ADDRESS_MAX - 1) then
-        rd_tdata_i <= X"8181CCCC";
-        tProgramCount <= tProgramCount + '1';
-      elsif (tch_data_enable = '1') then
-        rd_tdata_i <= X"000" & idx_n_sincos & '0' & rd_taddr(6 downto 0);
+        -- rd_tdata_i <= X"01000000";
+        rd_tdata_i <= tProgramCount(31 downto 0);
       else
-        rd_tdata_i <= C_DATA_ZERO(DATA_WIDTH - 1 downto ADDRESS_WIDTH) & rd_taddr;
+        rd_tdata_i <= X"00000000";
       end if;
-      --
-      if (tch_data_enable = '0') and (rd_taddr = 35) then -- 35 : 36 from 0 to 36 is ch1
-        tch_data_enable <= '1';
+      if (rd_taddr = ADDRESS_MAX - 1) then
+        tProgramCount <= tProgramCount + 1;
       end if;
-      if (tch_data_enable = '1') and (rd_taddr = 72) then -- 72 : ch37 from 0 to 72 is ch37
-        tch_data_enable <= '0';
-      end if;
+      
     end if;
   end process;
   --
@@ -115,9 +140,13 @@ begin
       rd_taddr <= (others => '0');
     elsif (rising_edge(Clk)) then
       rd_tstart_i <= rd_tstart;
-      if (rd_tstart_i = '1') and (rd_tenable = '0') then
-        rd_tenable <= '1';
+      rd_tstart_i_i <= rd_tstart_i;
+      rd_tstart_i_i_i <= rd_tstart_i_i;
+      if (rd_tstart = '1') and (rd_tstart_i = '0') then
         rd_taddr <= (others => '0');
+      end if;
+      if (rd_tstart_i_i = '1') and (rd_tstart_i_i_i = '0') then
+        rd_tenable <= '1';
       end if;
       --
       if (rd_tenable = '1') and (rd_tvalid = '0') then

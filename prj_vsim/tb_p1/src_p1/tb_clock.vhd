@@ -24,7 +24,7 @@ architecture MAPPED of tb_clock is
   signal bs_pl_dip_sw : std_logic_vector(3 downto 0) := (others => '0');
   signal bs_pl_led_out : std_logic_vector(3 downto 0) := (others => '0');
   -- Component Declarations --
-  component top_fft32k is
+  component top_p1 is
     port (
       clk_200M : in std_logic;
       clk_125M : in std_logic;
@@ -62,7 +62,7 @@ begin
   --____________________________Clocks____________________________
   bs_pl_dip_sw <= "0000";
   --
-  top_fft32k_i : top_fft32k
+  top_p1_i : top_p1
   port map
   (
     clk_200M => clk_200M_i,

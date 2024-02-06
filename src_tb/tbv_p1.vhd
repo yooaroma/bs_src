@@ -98,10 +98,10 @@ library UNISIM;
 use UNISIM.all;
 -- synthesis translate_on
 
-entity tb_bf1 is
+entity tb_p1 is
 end entity;
 
-architecture MAPPED of tb_bf1 is
+architecture MAPPED of tb_p1 is
 
   --*************************Parameter Declarations**************************
   -- 125.0MHz GT Reference clock
@@ -115,7 +115,7 @@ architecture MAPPED of tb_bf1 is
   signal bs_pl_dip_sw : std_logic_vector(3 downto 0) := (others => '0');
   signal bs_pl_led_out : std_logic_vector(3 downto 0) := (others => '0');
   -- Component Declarations --
-  component bd_bf1_wrapper is
+  component bd_p1_wrapper is
     port (
       CLK_IN1_D_0_clk_n : in std_logic;
       CLK_IN1_D_0_clk_p : in std_logic;
@@ -137,7 +137,7 @@ begin
   --____________________________Clocks____________________________
   bs_pl_dip_sw <= "0000";
   --
-  bd_bf1_wrapper_i : bd_bf1_wrapper
+  bd_p1_wrapper_i : bd_p1_wrapper
   port map
   (
     CLK_IN1_D_0_clk_n => CLK_IN1_D_0_clk_n_r,

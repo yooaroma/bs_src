@@ -98,10 +98,10 @@ library UNISIM;
 use UNISIM.all;
 -- synthesis translate_on
 
-entity tb_bf1 is
+entity tb_fft is
 end entity;
 
-architecture MAPPED of tb_bf1 is
+architecture MAPPED of tb_fft is
 
   --*************************Parameter Declarations**************************
   -- 125.0MHz GT Reference clock
@@ -112,15 +112,11 @@ architecture MAPPED of tb_bf1 is
   --Freerunning Clock
   signal CLK_IN1_D_0_clk_p_r : std_logic := '0';
   signal CLK_IN1_D_0_clk_n_r : std_logic := '0';
-  signal bs_pl_dip_sw : std_logic_vector(3 downto 0) := (others => '0');
-  signal bs_pl_led_out : std_logic_vector(3 downto 0) := (others => '0');
   -- Component Declarations --
-  component bd_bf1_wrapper is
+  component bd_p1_wrapper is
     port (
       CLK_IN1_D_0_clk_n : in std_logic;
-      CLK_IN1_D_0_clk_p : in std_logic;
-      bs_pl_dip_sw_0 : in std_logic_vector (3 downto 0);
-      bs_pl_led_out_0 : out std_logic_vector (3 downto 0)
+      CLK_IN1_D_0_clk_p : in std_logic
     );
   end component;
   --
@@ -137,13 +133,11 @@ begin
   --____________________________Clocks____________________________
   bs_pl_dip_sw <= "0000";
   --
-  bd_bf1_wrapper_i : bd_bf1_wrapper
+  bd_fft_wrapper_i : bd_fft_wrapper
   port map
   (
     CLK_IN1_D_0_clk_n => CLK_IN1_D_0_clk_n_r,
-    CLK_IN1_D_0_clk_p => CLK_IN1_D_0_clk_p_r,
-    bs_pl_dip_sw_0(3 downto 0) => bs_pl_dip_sw(3 downto 0),
-    bs_pl_led_out_0(3 downto 0) => bs_pl_led_out(3 downto 0)
+    CLK_IN1_D_0_clk_p => CLK_IN1_D_0_clk_p_r
   );
   -- Checking CHANNEL_UP Signal
   -- process
