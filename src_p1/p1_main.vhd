@@ -79,6 +79,7 @@ entity p1_main is
     m_rd_tdata : in std_logic_vector(31 downto 0);
     -- 
     m_tnext : out std_logic;
+    m_tcmd : out std_logic;
     --
     s_tstart : in std_logic;
     -- 
@@ -92,6 +93,7 @@ architecture rtl of p1_main is
   --
   signal rd_taddr : std_logic_vector(6 downto 0) := (others => '0');
   --
+  signal m_tnext_i : std_logic := '0';
   signal rd_tenable : std_logic := '0';
   signal rd_tstart : std_logic := '0';
   signal rd_tstart_i : std_logic := '0';
@@ -113,6 +115,7 @@ architecture rtl of p1_main is
   --
 begin
   --
+  m_tnext <= m_tnext_i;
   rd_tstart <= s_tstart;
   --
   m_rd_taddr <= rd_taddr;
@@ -186,6 +189,7 @@ begin
     if (reset_n = '0') then
       rd_tenable <= '0';
       rd_tstart_i <= '0';
+      m_tnext_i <= '0';
       idx_10u_v := 0;
     elsif (rising_edge(Clk)) then
       rd_tvalid <= rd_tenable;
@@ -200,9 +204,9 @@ begin
         sel_beam_reg_i <= sel_beam_reg;
         idx_v := 0;
         if (idx_10u_v = 0) then
-          m_tnext <= '1';
+          m_tcmd <= '1';
         else
-          m_tnext <= '0';
+          m_tcmd <= '0';
         end if;
       end if;
       if (rd_tenable = '1') then
@@ -255,9 +259,13 @@ begin
         beam_start <= '0';
         if (idx_10u_v = 99) then
           idx_10u_v := 0;
+          m_tnext_i <= '1';
         else
           idx_10u_v := idx_10u_v + 1;
         end if;
+      end if;
+      if (m_tnext_i = '1') then
+        m_tnext_i <= '0';
       end if;
       if (beam_start = '1') then
         sel_beam_bit_reg_i <= '0' & sel_beam_bit_reg_i(35 downto 1);

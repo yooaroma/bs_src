@@ -9,8 +9,8 @@ use ieee.std_logic_unsigned.all;
 
 entity data_ramp_gen is
   generic (
-    ADDRESS_MAX : natural := 256; -- 256 / 4 = 64
-    ADDRESS_WIDTH : natural := 8;
+    ADDRESS_MAX : natural := 32768; -- 256 / 4 = 64
+    ADDRESS_WIDTH : natural := 15;
     DATA_WIDTH : natural := 32
   );
   port (
@@ -18,11 +18,11 @@ entity data_ramp_gen is
     m_axis_data_tvalid : out std_logic;
     m_axis_data_tready : in std_logic;
     m_axis_data_tlast : out std_logic;
-    m_axis_data_tdata : out std_logic_vector(DATA_WIDTH * 2 - 1 downto 0);
+    m_axis_data_tdata : out std_logic_vector(255 downto 0);
     --    
     m_axis_config_tvalid : out std_logic;
     m_axis_config_tready : in std_logic;
-    m_axis_config_tdata : out std_logic_vector(15 downto 0);
+    m_axis_config_tdata : out std_logic_vector(79 downto 0);
     -- 
     m_rd_tstart : in std_logic;
     --
@@ -53,7 +53,7 @@ architecture rtl of data_ramp_gen is
   signal q_sel_pre : std_logic := '0';
   signal q_latch : std_logic := '0';
   --
-  constant C_DATA_ZERO : std_logic_vector(DATA_WIDTH - 1 downto 0) := (others => '0');
+  constant C_DATA_ZERO : std_logic_vector(255 downto 0) := (others => '0');
   --
   signal tch_data_enable : std_logic := '0';
   signal tProgramCount : std_logic_vector(31 downto 0);
@@ -61,7 +61,7 @@ architecture rtl of data_ramp_gen is
   signal tconfig_start_i : std_logic := '0';
   signal tvalid_config : std_logic := '0';
   signal tready_config : std_logic := '0';
-  signal tdata_config : std_logic_vector(15 downto 0) := (others => '0');
+  signal tdata_config : std_logic_vector(3 downto 0) := (others => '0');
   --
 begin
   --      
@@ -73,19 +73,19 @@ begin
   --
   m_axis_config_tvalid <= tvalid_config;
   tready_config <= m_axis_config_tready;
-  m_axis_config_tdata <= tdata_config;
+  m_axis_config_tdata <= C_DATA_ZERO(79 downto 4) & tdata_config;
   --
   p_fft_config : process (Clk,reset_n)
   begin
     if (reset_n = '0') then
       tconfig_start_i <= '0';
       tvalid_config <= '0';
-      tdata_config <= X"0000";
+      tdata_config <= "0000";
     elsif (rising_edge(Clk)) then
       if (tconfig_start_i = '0') then
         tconfig_start_i <= '1';
         tvalid_config <= '1';
-        tdata_config <= X"0001"; -- BFP1
+        tdata_config <= "1111";
       end if;
       if (tvalid_config = '1') and (tready_config = '1') then
         tvalid_config <= '0';
@@ -97,7 +97,7 @@ begin
   m_axis_data_tvalid <= rd_tvalid;
   rd_tready <= m_axis_data_tready;
   m_axis_data_tlast <= rd_tlast;
-  m_axis_data_tdata <= X"00000000" & rd_tdata_o;
+  m_axis_data_tdata <= C_DATA_ZERO(255 downto 224) & rd_tdata_o & C_DATA_ZERO(191 downto 160) & rd_tdata_o  & C_DATA_ZERO(127 downto 96) & rd_tdata_o  & C_DATA_ZERO(63 downto 32) & rd_tdata_o;
   --
   -- m_rd_taddr <= rd_taddr;
   -- rd_tdata_i <= m_rd_tdata;
@@ -113,7 +113,7 @@ begin
       -- if (rd_taddr > 0) and (rd_taddr < 20) then
       if (rd_taddr = 0) then
         -- rd_tdata_i <= X"01000000";
-        rd_tdata_i <= tProgramCount(31 downto 0);
+        rd_tdata_i <= tProgramCount(31 downto 0) + 1;
       else
         rd_tdata_i <= X"00000000";
       end if;

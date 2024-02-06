@@ -24,7 +24,7 @@ entity p1_ram is
     --
     reset_n : in std_logic;
     Clk_rd : in std_logic;
-    Clk : in std_logic 
+    Clk : in std_logic
     --    
   );
 end entity;
@@ -46,17 +46,17 @@ architecture rtl of p1_ram is
   --
   component bs_expansion is
     generic (
-      expansion_max : natural := 2
+      BS_PULSE_MAX : natural := 2
     );
     port (
       --    
-      Clk : in std_logic;
-      reset_n : in std_logic;
-      tlast_in : in std_logic;
-      tlast_out : out std_logic
+      tpulse_out : out std_logic;
+      tpulse_in : in std_logic;
+      Clk : in std_logic
       --    
     );
   end component;
+
   -- ram or rom  
   constant DPRAM_ADDRESS_WIDTH : natural := ADDRESS_WIDTH + 1; -- 300 * 2 = double buffer
   type ram_type is array (0 to (2 ** DPRAM_ADDRESS_WIDTH) - 1) of std_logic_vector(31 downto 0);
@@ -105,15 +105,14 @@ begin
   bs_expansion_i : bs_expansion
   generic map
   (
-    expansion_max => 2
+    BS_PULSE_MAX => 2
   )
   port map
   (
     --    
     Clk => Clk,
-    reset_n => reset_n_i,
-    tlast_in => s_axis_tlast,
-    tlast_out => s_axis_tlast_i
+    tpulse_in => s_axis_tlast,
+    tpulse_out => s_axis_tlast_i
     --    
   );
   --

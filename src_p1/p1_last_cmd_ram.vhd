@@ -7,11 +7,11 @@ use ieee.numeric_std.all;
 use ieee.math_real.all;
 use ieee.std_logic_unsigned.all;
 --
-entity p1_last_ram is
+entity p1_last_cmd_ram is
   generic (
-    ADDRESS_MAX : natural := 256;
-    ADDRESS_WIDTH : natural := 8;
-    DATA_WIDTH : natural := 64
+    ADDRESS_MAX : natural := 300;
+    ADDRESS_WIDTH : natural := 9;
+    DATA_WIDTH : natural := 32
   );
   port (
     --    
@@ -33,7 +33,7 @@ entity p1_last_ram is
   );
 end entity;
 --
-architecture rtl of p1_last_ram is
+architecture rtl of p1_last_cmd_ram is
   --
   constant C_DATA_ZERO : std_logic_vector(DATA_WIDTH - 1 downto 0) := (others => '0');
   --
@@ -54,7 +54,6 @@ begin
   begin
     if (reset_n = '0') then
       wr_taddr_i <= (others => '0');
-      s_cmd_enable <= '0';
     elsif (rising_edge(Clk)) then
       if (s_axis_tvalid = '1') and (s_cmd_enable = '1') then
         RAM(conv_integer(wr_taddr_i)) <= s_axis_tdata;

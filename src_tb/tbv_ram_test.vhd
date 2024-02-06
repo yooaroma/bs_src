@@ -98,10 +98,10 @@ library UNISIM;
 use UNISIM.all;
 -- synthesis translate_on
 
-entity tbv_fft is
+entity tbv_ram_test is
 end entity;
 
-architecture MAPPED of tbv_fft is
+architecture MAPPED of tbv_ram_test is
 
   --*************************Parameter Declarations**************************
   -- 125.0MHz GT Reference clock
@@ -113,7 +113,7 @@ architecture MAPPED of tbv_fft is
   signal CLK_IN1_D_0_clk_p_r : std_logic := '0';
   signal CLK_IN1_D_0_clk_n_r : std_logic := '0';
   -- Component Declarations --
-  component bd_fft32k_wrapper is
+  component bd_p1_wrapper is
     port (
       CLK_IN1_D_0_clk_n : in std_logic;
       CLK_IN1_D_0_clk_p : in std_logic
@@ -132,7 +132,7 @@ begin
   CLK_IN1_D_0_clk_n_r <= not CLK_IN1_D_0_clk_p_r;
   --____________________________Clocks____________________________
   --
-  bd_fft32k_wrapper_i : bd_fft32k_wrapper
+  bd_p1_wrapper_i : bd_p1_wrapper
   port map
   (
     CLK_IN1_D_0_clk_n => CLK_IN1_D_0_clk_n_r,
